@@ -1,0 +1,73 @@
+# Composer
+/vendor/
+composer.phar
+
+# Environment Files
+.env
+.env.local
+.env.development
+.env.production
+
+# IDE and Editor Directories
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+/storage/logs/
+*.log
+
+# Caches
+/storage/cache/
+*.cache
+
+# Temporary Files
+/tmp/
+/temp/
+
+# Uploaded Files (optional, depending on your upload strategy)
+/public/uploads/*
+!public/uploads/.gitkeep
+
+# Compiled Files
+*.compiled
+*.min.js
+*.min.css
+
+# PHP Specific
+*.php[co]
+.php_cs.cache
+.phpunit.result.cache
+
+# Security
+.htaccess
+!public/.htaccess
+
+# Build and Distribution
+/build/
+/dist/
+
+# Dependency Directories
+node_modules/
+bower_components/
+
+# Backup Files
+*.bak
+*.gho
+*.ori
+*.orig
+*.tmp
+
+# Project Specific Ignores
+config/database.php
+config/secrets.php
+
+# Exclude sensitive configuration
+*.ini
