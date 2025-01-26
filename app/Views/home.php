@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once('inc/header.php') ?>
+<?php
+
+use App\Models\Cart;
+use App\Models\Product;
+use Config\DBConnection;
+
+$database= new DBConnection();
+$dbConnection= $database->getConnection();
+var_dump($dbConnection);
+
+
+ require_once('inc/header.php') ?>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-danger">
         <div class="container px-4 px-lg-5 ">
@@ -23,13 +34,17 @@
                     //   $cart = $conn->query("SELECT SUM(quantity) FROM `cart_list` where customer_id = '{$_settings->userdata('id')}' ")->fetch_array()[0];
                     // endif;
                     // $cart = isset($cart) && $cart > 0 ? $cart : '';
+                    $cart = Cart::getUserCart(2, $dbConnection);
                     ?>
                     <?php
                     // if (
                     //     $_settings->userdata('id') != '' && $_settings->userdata('login_type') == 2):
                     //
                     ?>
-                        <li class="nav-item"><a class="nav-link text-white" href="./?p=cart_list">Cart <span class="ml-2 badge badge-primary"><?= $cart > 0 ? format_num($cart) : '' ?></span></a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="./?p=cart_list">Cart <span class="ml-2 badge badge-primary"><?
+                        // = $cart > 0 ? format_num($cart) : ''
+                         ?>
+                        </span></a></li>
                         <li class="nav-item"><a class="nav-link text-white" href="./?p=pres">Prescription Management</a></li>
                     <?php
                 // endif;
@@ -101,6 +116,8 @@
                                             // $stmt = $conn->prepare($sql);
                                             // $stmt->execute(['current_date' => date("Y-m-d")]);
                                             // while ($row = $stmt->fetch(PDO::FETCH_ASSOC)):
+                                            $products = Product::getProductInStock($dbConnection, 4);
+                                            foreach ($products as $row):
                                             ?>
                                             <div class="col">
                                                 <a class="card rounded-0 shadow product-item text-decoration-none text-reset" href="./?p=products/view_product&id=<?= $row['id'] ?>">
@@ -122,7 +139,7 @@
                                                 </a>
                                             </div>
                                             <?php
-                                            // endwhile;
+                                            endforeach
                                             ?>
                                         </div>
                                         <div class="text-center py-1">

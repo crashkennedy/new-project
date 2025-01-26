@@ -10,4 +10,8 @@ class HomePageController extends Controller
     {
         return $this->view('home');
     }
+    public function getProductInStock()
+    {
+        return $this->model('Product')->getProductInStock();
+    }
 }
