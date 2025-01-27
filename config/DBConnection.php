@@ -46,6 +46,7 @@ class DBConnection {
     }
 
     public function getConnection(): PDO{
+        var_dump($_ENV);
         return $this->conn;
     }
 }

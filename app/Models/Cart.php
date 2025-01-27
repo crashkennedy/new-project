@@ -24,7 +24,7 @@ class Cart {
         $query = "SELECT SUM(quantity) FROM `cart_list` where customer_id = '{$customer_id}' ";
         $stmt = $conn->prepare($query);
         $stmt->execute();
-        return $stmt->fetch()[0];
+        return $stmt->fetch();
 
     }
 }

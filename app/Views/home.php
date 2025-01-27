@@ -2,16 +2,7 @@
 <html lang="en">
 <?php
 
-use App\Models\Cart;
-use App\Models\Product;
-use Config\DBConnection;
-
-$database= new DBConnection();
-$dbConnection= $database->getConnection();
-var_dump($dbConnection);
-
-
- require_once('inc/header.php') ?>
+require_once('inc/header.php') ?>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-danger">
         <div class="container px-4 px-lg-5 ">
@@ -19,7 +10,7 @@ var_dump($dbConnection);
             <a class="navbar-brand" href="./">
                 <img src="../../public/uploads/logo.png"  width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
                 <?php
-                // echo $_settings->info('short_name')
+                echo $_settings->info('short_name')
                  ?>
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -34,7 +25,7 @@ var_dump($dbConnection);
                     //   $cart = $conn->query("SELECT SUM(quantity) FROM `cart_list` where customer_id = '{$_settings->userdata('id')}' ")->fetch_array()[0];
                     // endif;
                     // $cart = isset($cart) && $cart > 0 ? $cart : '';
-                    $cart = Cart::getUserCart(2, $dbConnection);
+                    $cart = $data['cart'];
                     ?>
                     <?php
                     // if (
@@ -116,7 +107,8 @@ var_dump($dbConnection);
                                             // $stmt = $conn->prepare($sql);
                                             // $stmt->execute(['current_date' => date("Y-m-d")]);
                                             // while ($row = $stmt->fetch(PDO::FETCH_ASSOC)):
-                                            $products = Product::getProductInStock($dbConnection, 4);
+                                            $products = $data['products'];
+                                            var_dump($_ENV);
                                             foreach ($products as $row):
                                             ?>
                                             <div class="col">

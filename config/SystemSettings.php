@@ -1,30 +1,38 @@
 <?php
-if(!class_exists('DBConnection')){
-	require_once('../config.php');
-	require_once('DBConnection.php');
-}
-class SystemSettings extends DBConnection{
-	public function __construct(){
-		parent::__construct();
+
+namespace Config;
+
+use DOMDocument;
+use PDO;
+use Config\DBConnection;
+
+class SystemSettings{
+	private $conn;
+	public function __construct(private DBConnection $Database){
+		$this->conn = $Database->getConnection();
 	}
-	function __destruct(){
-	}
-	function check_connection(){
-		return($this->conn);
-	}
-	function load_system_info(){
+	// function __destruct(){
+	// }
+	// function check_connection(){
+	// 	return($this->conn);
+	// }
+
+
+   public function load_system_info_from_db(){
 		// if(!isset($_SESSION['system_info'])){
-			$sql = "SELECT * FROM system_info";
-			$qry = $this->conn->query($sql);
-				while($row = $qry->fetch()){
+			$query = "SELECT * FROM system_info";
+			$stmt = $this->conn->prepare($query);
+			$stmt->execute();
+				while($row = $stmt->fetch()){
 					$_SESSION['system_info'][$row['meta_field']] = $row['meta_value'];
 				}
 		// }
 	}
 	function update_system_info(){
-		$sql = "SELECT * FROM system_info";
-		$qry = $this->conn->query($sql);
-			while($row = $qry->fetch(PDO::FETCH_ASSOC)){
+		$query = "SELECT * FROM system_info";
+		$stmt = $this->conn->prepare($query);
+		$stmt->execute();
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 				if(isset($_SESSION['system_info'][$row['meta_field']]))unset($_SESSION['system_info'][$row['meta_field']]);
 				$_SESSION['system_info'][$row['meta_field']] = $row['meta_value'];
 			}
@@ -36,9 +44,11 @@ class SystemSettings extends DBConnection{
 			if(!in_array($key,array("content")))
 			if(isset($_SESSION['system_info'][$key])){
 				$value = str_replace("'", "&apos;", $value);
-				$qry = $this->conn->query("UPDATE system_info set meta_value = '{$value}' where meta_field = '{$key}' ");
+				$stmt = $this->conn->prepare("UPDATE system_info set meta_value = ? where meta_field = ? ");
+				$stmt->execute([$value,$key]);
 			}else{
-				$qry = $this->conn->query("INSERT into system_info set meta_value = '{$value}', meta_field = '{$key}' ");
+				$stmt = $this->conn->prepare("INSERT into system_info set meta_value = ?, meta_field = ? ");
+				$stmt->execute([$value,$key]);
 			}
 		}
 		if(isset($_POST['content'])){
@@ -244,16 +254,17 @@ class SystemSettings extends DBConnection{
 		return $decryption;
 	}
 }
-$_settings = new SystemSettings();
-$_settings->load_system_info();
-$action = !isset($_GET['f']) ? 'none' : strtolower($_GET['f']);
-$sysset = new SystemSettings();
-switch ($action) {
-	case 'update_settings':
-		echo $sysset->update_settings_info();
-		break;
-	default:
-		// echo $sysset->index();
-		break;
-}
+// $dbConnection = new DBConnection();
+// $_settings = new SystemSettings( $dbConnection );
+// $_settings->load_system_info_from_db();
+// $action = !isset($_GET['f']) ? 'none' : strtolower($_GET['f']);
+// $sysset = new SystemSettings($dbConnection);
+// switch ($action) {
+// 	case 'update_settings':
+// 		echo $sysset->update_settings_info();
+// 		break;
+// 	default:
+// 		// echo $sysset->index();
+// 		break;
+// }
 ?>
