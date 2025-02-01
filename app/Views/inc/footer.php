@@ -11,7 +11,7 @@
         var view = $("<video src='"+$src+"' controls autoplay></video>")
       }else{
         var view = $("<img src='"+$src+"' />")
-      } 
+      }
       $('#viewer_modal .modal-content video,#viewer_modal .modal-content img').remove()
       $('#viewer_modal .modal-content').append(view)
       $('#viewer_modal').modal({
@@ -20,7 +20,7 @@
               keyboard:false,
               focus:true
             })
-            end_loader()  
+            end_loader()
 
   }
     window.uni_modal = function($title = '' , $url='',$size=""){
@@ -60,45 +60,54 @@
 </script>
 <!-- Footer-->
 <footer class="py-5 bg-gradient-danger">
-            <div class="container">
-              <p class="m-0 text-center text-white">Copyright &copy; <?php echo $_settings->info('short_name') ?> 2024</p>
-              <p class="m-0 text-center text-white">Developed By: <a href="#">Emmanuel</a></p>
-          </div>
-        </footer>
+    <div class="container">
+        <p class="m-0 text-center text-white">
+            <?php
+            $currentYear = date('Y');
+            $siteName = $settings->info('short_name') ?? 'OPMS';
+            echo "Copyright &copy; {$siteName} {$currentYear}";
+            ?>
+        </p>
+        <?php
+        // Optional: Uncomment and customize developer credit if needed
+        // echo '<p class="m-0 text-center text-white">Developed By: <a href="#">Your Name/Company</a></p>';
+        ?>
+    </div>
+</footer>
 
-   
+
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
       $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
-    <script src="<?php echo base_url ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
-    <script src="<?php echo base_url ?>plugins/chart.js/Chart.min.js"></script>
+    <script src="../../public/plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->
-    <script src="<?php echo base_url ?>plugins/sparklines/sparkline.js"></script>
+    <script src="../../public/plugins/sparklines/sparkline.js"></script>
     <!-- Select2 -->
-    <script src="<?php echo base_url ?>plugins/select2/js/select2.full.min.js"></script>
+    <script src="../../public/plugins/select2/js/select2.full.min.js"></script>
     <!-- JQVMap -->
-    <script src="<?php echo base_url ?>plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="<?php echo base_url ?>plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <script src="../../public/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../../public/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
     <!-- jQuery Knob Chart -->
-    <script src="<?php echo base_url ?>plugins/jquery-knob/jquery.knob.min.js"></script>
+    <script src="../../public/plugins/jquery-knob/jquery.knob.min.js"></script>
     <!-- daterangepicker -->
-    <script src="<?php echo base_url ?>plugins/moment/moment.min.js"></script>
-    <script src="<?php echo base_url ?>plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="../../public/plugins/moment/moment.min.js"></script>
+    <script src="../../public/plugins/daterangepicker/daterangepicker.js"></script>
     <!-- Tempusdominus Bootstrap 4 -->
-    <script src="<?php echo base_url ?>plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="../../public/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Summernote -->
-    <script src="<?php echo base_url ?>plugins/summernote/summernote-bs4.min.js"></script>
-    <script src="<?php echo base_url ?>plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?php echo base_url ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="<?php echo base_url ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="<?php echo base_url ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="../../public/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="../../public/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../public/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../public/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../public/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <!-- overlayScrollbars -->
     <!-- <script src="<?php echo base_url ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script> -->
     <!-- AdminLTE App -->
-    <script src="<?php echo base_url ?>dist/js/adminlte.js"></script>
+    <script src="../../public/dist/js/adminlte.js"></script>
     <div class="daterangepicker ltr show-ranges opensright">
       <div class="ranges">
         <ul>
