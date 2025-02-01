@@ -8,30 +8,19 @@ use PDOException;
 
 class Product
 {
-    private int $id;
-    private int $catergory_id;
-    private string $name;
-    private string $description;
-    private string $image_path;
-    private string $dose;
-    private float  $price;
-    private bool $status;
-    private bool $delete_flag;
-    private DateTime $date_created;
-    private DateTime $date_updated;
+    // private int $id;
+    // private int $catergory_id;
+    // private string $name;
+    // private string $description;
+    // private string $image_path;
+    // private string $dose;
+    // private float  $price;
+    // private bool $status;
+    // private bool $delete_flag;
+    // private DateTime $date_created;
+    // private DateTime $date_updated;
 
     public function __construct(
-        int $id,
-        int $catergory_id,
-        string $name,
-        string $description,
-        string $image_path,
-        string $dose,
-        float $price,
-        bool $status,
-        bool $delete_flag,
-        DateTime $date_created,
-        DateTime $date_updated,
         private PDO $conn
     ){}
 

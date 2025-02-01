@@ -27,6 +27,7 @@ class DBConnection {
         $this->port = $_ENV['DB_PORT'];
         $this->driver = $_ENV['DB_DRIVER'];
 
+
         if (!isset($this->conn)) {
             try {
                 $dsn = "{$this->driver}:host={$this->host};port={$this->port};dbname={$this->database};";
@@ -46,7 +47,6 @@ class DBConnection {
     }
 
     public function getConnection(): PDO{
-        var_dump($_ENV);
         return $this->conn;
     }
 }

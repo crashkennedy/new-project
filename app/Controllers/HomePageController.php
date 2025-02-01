@@ -2,30 +2,29 @@
 
 namespace App\Controllers;
 
+use App\Models\Cart;
+use App\Models\Product;
 use Config\DBConnection;
 use Core\Controller;
 
 class HomePageController extends Controller
 {
-    public $connection;
-    public function __construct(private DBConnection $database)
-    {
-        $this->connection = $database->getConnection();
-    }
     public function renderHomePage()
     {
+        global $_settings;
         return $this->view('home', [
             'products' => $this->getProductInStock(),
-            'cart' => $this->userCart()
+            'cart' => $this->userCart(),
+            'settings' => $_settings
         ]);
     }
     private function getProductInStock()
     {
-        return $this->model('Product')->getProductInStock();
+        return $this->model(Product::class)->getProductInStock($this->connection);
     }
 
     private function userCart()
     {
-        return $this->model('Cart')->getUserCart(2, $this->connection);
+        return $this->model(Cart::class)->getUserCart(2, $this->connection);
     }
 }
