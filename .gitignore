@@ -33,7 +33,6 @@ desktop.ini
 /temp/
 
 # Uploaded Files (optional, depending on your upload strategy)
-/public/uploads/*
 !public/uploads/.gitkeep
 
 # Compiled Files

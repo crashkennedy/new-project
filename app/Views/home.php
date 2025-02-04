@@ -184,8 +184,8 @@
                             <?php
                             else:
                             ?>
-                                <a class="font-weight-bolder text-light mx-2 text-decoration-none" href="./login.php">Login</a>
-                                <a class="font-weight-bolder text-light mx-2 text-decoration-none" href="./register.php">Register</a>
+                                <a class="font-weight-bolder text-light mx-2 text-decoration-none" href="./login">Login</a>
+                                <a class="font-weight-bolder text-light mx-2 text-decoration-none" href="./register">Register</a>
                                 <a class="font-weight-bolder text-light mx-2 text-decoration-none" href="./admin">Admin Panel</a>
                             <?php
                             endif;

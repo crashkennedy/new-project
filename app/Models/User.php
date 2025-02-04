@@ -1,15 +1,18 @@
 <?php
-require_once('../config.php');
-Class Users extends DBConnection {
-	private $settings;
-	public function __construct(){
-		global $_settings;
-		$this->settings = $_settings;
-		parent::__construct();
-	}
-	public function __destruct(){
-		parent::__destruct();
-	}
+
+namespace App\Models;
+
+use PDO;
+
+Class User {
+
+
+
+	public function __construct(
+        private PDO $conn
+    ){}
+
+
 	public function save_users(){
 		if(empty($_POST['password']))
 			unset($_POST['password']);
@@ -112,7 +115,7 @@ Class Users extends DBConnection {
 			}else{
 				return "UPDATE users set $data where id = {$id}";
 			}
-			
+
 		}
 	}
 	public function delete_users(){
@@ -229,7 +232,7 @@ Class Users extends DBConnection {
 
 		return json_encode($resp);
 	}
-	
+
 }
 
 $users = new users();
