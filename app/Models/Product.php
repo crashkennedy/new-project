@@ -62,8 +62,6 @@ class Product
 		$stmt->bindvalue(":date_created", $data['date_created']);
 		$stmt->bindvalue(":date_updated", $data['date_updated']);
 		$stmt->execute();
-
-
     }
 
 	public function getProductById($id, $conn){

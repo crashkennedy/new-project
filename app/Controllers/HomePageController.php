@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
-use Config\DBConnection;
 use Core\Controller;
 
 class HomePageController extends Controller

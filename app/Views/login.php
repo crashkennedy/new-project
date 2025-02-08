@@ -44,10 +44,6 @@
         transition: transform 0.3s ease;
     }
 
-    .login-card:hover {
-        transform: translateY(-10px);
-    }
-
     .login-header {
         text-align: center;
         margin-bottom: 30px;
@@ -130,54 +126,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function(){
-            end_loader();
-            $('#ulogin-form').submit(function(e){
-                e.preventDefault()
-                var _this = $(this)
-                var el = $('<div>')
-                el.addClass('alert alert-danger err_msg')
-                el.hide()
-                $('.err_msg').remove()
-                if(_this[0].checkValidity() == false){
-                    _this[0].reportValidity();
-                    return false;
-                }
-                start_loader()
-                $.ajax({
-                    url:_base_url_+"classes/Login.php?f=login_customer",
-                    method:'POST',
-                    type:'POST',
-                    data:new FormData($(this)[0]),
-                    dataType:'json',
-                    cache:false,
-                    processData:false,
-                    contentType: false,
-                    error:err=>{
-                        console.log(err)
-                        alert('An error occurred')
-                        end_loader()
-                    },
-                    success:function(resp){
-                        if(resp.status == 'success'){
-                            location.href = ('./')
-                        }else if(!!resp.msg){
-                            el.html(resp.msg)
-                            el.show('slow')
-                            _this.prepend(el)
-                            $('html, body').scrollTop(0)
-                        }else{
-                            alert('An error occurred')
-                            console.log(resp)
-                        }
-                        end_loader()
-                    }
-                })
-            })
-        })
-    </script>
-
 </body>
 </html>
