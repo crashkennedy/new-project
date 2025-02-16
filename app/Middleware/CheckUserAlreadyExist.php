@@ -18,11 +18,11 @@ class CheckUserAlreadyExist extends Middleware {
     }
 
     public function handle($request, callable $next): mixed {
-        if ($this->isUserAlreadyExist($_POST['userName'], $this->conn)) {
+        $user = $this->isUserAlreadyExist($_POST['userName'], $this->conn);
+        if ($user) {
           http_response_code(400);
-          echo json_encode([
-            'message' => 'User already exist'
-          ]);
+           echo json_encode(['message' => 'User already exist']);
+           exit;
         }
 
         return $next($request);
