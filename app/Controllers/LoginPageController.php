@@ -30,6 +30,12 @@ class LoginPageController extends Controller
             $user = $this->model(User::class)->getUserByUsername($data['userName'], $this->connection);
             if ($user && password_verify($data['password'], $user['password'])) {
                 echo json_encode(['message' => 'User logged in successfully']);
+                session_start();
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['user_type'] = $user['user_type'];
+                $_SESSION['firstname'] = $user['firstname'];
+                $_SESSION['lastname'] = $user['lastname'];
                 header('Location: /');
             } else {
                 echo json_encode(['message' => 'Invalid username or password']);

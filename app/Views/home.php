@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once('inc/header.php') ?>
+<?php
+
+use App\Models\UserType;
+ session_start();
+ require_once('inc/header.php') ?>
 <style>
     html,
     body {
@@ -149,14 +153,11 @@
                             ?>
                             <?php
                             if (
-                                $settings->userdata('id') != '' && $settings->userdata('login_type') == 2
+                                isset($_SESSION['user_id']) && $_SESSION['user_id'] != '' && isset($_SESSION['user_type']) && $_SESSION['user_type'] == 2
                             ):
 
                             ?>
-                                <li class="nav-item"><a class="nav-link text-white" href="./?p=cart_list">Cart <span class="ml-2 badge badge-primary"><?
-                                                                                                                                                        // = $cart > 0 ? format_num($cart) : ''
-                                                                                                                                                        ?>
-                                        </span></a></li>
+                                <li class="nav-item"><a class="nav-link text-white" href="./?p=cart_list">Cart <span class="ml-2 badge badge-primary"><?php echo isset($cart) && $cart > 0 ? format_num($cart) : '' ?></span></a></li>
                                 <li class="nav-item"><a class="nav-link text-white" href="./?p=pres">Prescription Management</a></li>
                             <?php
                             endif;
@@ -165,18 +166,19 @@
                         </ul>
                         <div class="d-flex align-items-center">
                             <?php
-                            if ($settings->userdata('id') != '' && $settings->userdata('login_type') == 2):
+                              $session = $_SESSION;
+                            if ( $session['user_id'] != '' && $session['user_type'] == UserType::USER->value):
                             ?>
                                 <div class="btn-group nav-link">
                                     <button type="button" class="btn btn-rounded badge badge-light dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                        <span><img src="<?php echo $settings->userdata('avatar') ?>" class="img-circle elevation-2 user-img" alt="User Image"></span>
-                                        <span class="ml-3"><?php echo ucwords($settings->userdata('firstname') . ' ' . $settings->userdata('lastname')) ?></span>
+                                        <!-- <span><img src="<?php echo $settings->userdata('avatar') ?>" class="img-circle elevation-2 user-img" alt="User Image"></span> -->
+                                        <span class="ml-3"><?php echo ucwords($session['firstname'] . ' ' . $session['lastname']) ?></span>
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <div class="dropdown-menu" role="menu">
-                                        <a class="dropdown-item" href="<?php echo '/user' ?>"><span class="fa fa-user"></span> My Account</a>
+                                        <a class="dropdown-item" href="<?php echo sprintf('/user?id=%s', $session['id']) ?>"><span class="fa fa-user"></span> My Account</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="<?php echo '/orders' ?>"><span class="fa fa-table"></span> My Orders</a>
+                                        <a class="dropdown-item" href="<?php echo sprintf('/orders?id=%s', $session['id']) ?>"><span class="fa fa-table"></span> My Orders</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="<?php echo  '/logout' ?>"><span class="fas fa-sign-out-alt"></span> Logout</a>
                                     </div>
