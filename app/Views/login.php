@@ -110,7 +110,7 @@
                 </div>
                 <form id="ulogin-form" method="POST" action="">
                     <div class="form-group mb-3">
-                        <input type="email" name="email" class="form-control" placeholder="Email Address" autofocus required>
+                        <input type="text" name="userName" class="form-control" placeholder="Username" autofocus required>
                     </div>
                     <div class="form-group mb-3">
                         <input type="password" name="password" class="form-control" placeholder="Password" required>

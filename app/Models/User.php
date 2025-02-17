@@ -72,15 +72,17 @@ class User
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
-	public function login($username, $password, $conn)
-	{
-		$query = "SELECT * FROM users where username = :username and password = :password";
-		$stmt = $conn->prepare($query);
-		$stmt->bindvalue(":username", $username);
-		$stmt->bindvalue(":password", $password);
-		$stmt->execute();
-		return $stmt->fetch(PDO::FETCH_ASSOC);
-	}
+	// public function login($username, $password, $conn)
+	// {
+
+
+	// 	$query = "SELECT * FROM users where username = :username and password = :password";
+	// 	$stmt = $conn->prepare($query);
+	// 	$stmt->bindvalue(":username", $username);
+	// 	$stmt->bindvalue(":password", $password);
+	// 	$stmt->execute();
+	// 	return $stmt->fetch(PDO::FETCH_ASSOC);
+	// }
 
 	public function GetUserByUsername($username, $conn)
 	{
