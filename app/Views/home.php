@@ -3,8 +3,9 @@
 <?php
 
 use App\Models\UserType;
- session_start();
- require_once('inc/header.php') ?>
+
+session_start();
+require_once('inc/header.php') ?>
 <style>
     html,
     body {
@@ -166,8 +167,8 @@ use App\Models\UserType;
                         </ul>
                         <div class="d-flex align-items-center">
                             <?php
-                              $session = $_SESSION;
-                            if ( $session['user_id'] != '' && $session['user_type'] == UserType::USER->value):
+                            $session = $_SESSION;
+                            if ($session['user_id'] != '' && $session['user_type'] == UserType::USER->value):
                             ?>
                                 <div class="btn-group nav-link">
                                     <button type="button" class="btn btn-rounded badge badge-light dropdown-toggle dropdown-icon" data-toggle="dropdown">
@@ -226,7 +227,7 @@ use App\Models\UserType;
                             <p class="text-muted">Explore our wide range of medical products</p>
                         </div>
                     </div> -->
-                    <!-- <div class="row g-4">
+            <!-- <div class="row g-4">
                         <?php
                         // $categories = [
                         //     ['name' => 'Prescription Drugs', 'icon' => 'fa-prescription-bottle', 'link' => '/prescription-drugs'],
@@ -262,7 +263,7 @@ use App\Models\UserType;
                         <div class="col-12 text-center mb-5">
                             <h2 class="display-6 fw-bold">How It Works</h2>
                             <p class="text-muted">Simple steps to manage your health needs</p> -->
-                        <!-- </div>
+            <!-- </div>
                     </div>
                     <div class="row g-4">
                         <?php
@@ -377,6 +378,7 @@ use App\Models\UserType;
                     </div>
                     <div class="row g-4">
                         <?php
+
                         foreach ($products as $row):
                         ?>
                             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
